@@ -1,0 +1,7 @@
+[{"constant":false,"inputs":[{"name":"id","type":"uint256"}],"name":"voteAgainst","outputs":[]},{"constant":false,"inputs":[{"name":"description","type":"string32"}],"name":"createProposal","outputs":[{"name":"id","type":"uint256"}]},{"constant":true,"inputs":[],"name":"getNumProposals","outputs":[{"name":"num","type":"uint256"}]},{"constant":false,"inputs":[{"name":"id","type":"uint256"}],"name":"voteFor","outputs":[]},{"constant":true,"inputs":[{"name":"id","type":"uint256"}],"name":"getProposal","outputs":[{"name":"description","type":"string32"},{"name":"votesFor","type":"uint256"},{"name":"votesAgainst","type":"uint256"}]}]
+contract Ballot{function voteAgainst(uint256 id){}function createProposal(string32 description)returns(uint256 id){}function getNumProposals()constant returns(uint256 num){}function voteFor(uint256 id){}function getProposal(uint256 id)constant returns(string32 description,uint256 votesFor,uint256 votesAgainst){}}
+750e443a… :voteAgainst
+7958ca52… :createProposal
+798974dd… :getNumProposals
+86a50535… :voteFor
+c7f758a8… :getProposal
