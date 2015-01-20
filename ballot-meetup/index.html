@@ -21,11 +21,15 @@ var contract;
 $(function() {
   $("#ballotAddress").change(function() {
     contract = web3.contract('0x' + $("#ballotAddress").val(), contractInterface);
+    web3.watch({altered: '0x' + $("#ballotAddress").val()}).changed(function() {
+                updateView(); });
     updateView();
   });
   $("#updateView").click(function(ev) {
     ev.preventDefault();
     contract = web3.contract('0x' + $("#ballotAddress").val(), contractInterface);
+    web3.eth.watch({altered: '0x' + $("#ballotAddress").val()}).changed(function() {
+                updateView(); });
     updateView();
     return false;
   });
@@ -59,7 +63,18 @@ function updateProposal(i)
      .append("<br/>Votes for: ")
      .append($('<span/>').text(proposal[1]))
      .append("<br/>Votes against: ")
-     .append($('<span/>').text(proposal[1]));
+     .append($('<span/>').text(proposal[2]))
+     .append($('<button id="voteFor-' + i + '">vote for</button>').click(function() {
+             contract.voteFor(i).transact().then(function() {
+                 updateView();
+             });
+            }))
+     .append($('<button id="voteAgainst-' + i + '">vote against</button>').click(function() {
+             contract.voteAgainst(i).transact().then(function() {
+                 updateView();
+             });
+           }))
+     .append('<hr/>');
   });
 };
 

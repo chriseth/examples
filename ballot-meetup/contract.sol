@@ -7,11 +7,13 @@ contract Ballot {
   /// @notice Vote for proposal `id`?
   function voteFor(uint id) {
     if (proposals[id].voted[msg.sender]) return;
+    proposals[id].voted[msg.sender] = true;
     proposals[id].votesFor++;
   }
   /// @notice Vote against proposal `id`?
   function voteAgainst(uint id) {
     if (proposals[id].voted[msg.sender]) return;
+    proposals[id].voted[msg.sender] = true;
     proposals[id].votesAgainst++;
   }
   function getNumProposals() constant returns (uint num) {
